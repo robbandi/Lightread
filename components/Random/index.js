@@ -193,6 +193,7 @@ const Random = () => {
                 link
             )
             const data = await response.json()
+            // data/
             setLinkedArticle(data)
             // console.log(linkedArticle)
         } catch (error) {
@@ -272,7 +273,7 @@ const Random = () => {
                 (
                 linkedArticle ? linkedArticle && (
                     <p className={styles.wiki} onClick={getLinkedArticle}><FaWikipediaW/>
-                    <p>{linkedArticle.extract.includes("Null") ? '' :  linkedArticle.extract}</p>
+                    <p>{!linkedArticle.title.includes('Null') ? linkedArticle.extract : ''}</p>
                     </p>
                 
                 ): '')} 
@@ -299,9 +300,9 @@ const Random = () => {
                 )}
                                 <span className={styles.start}>
                 {isSpeaking ? (
-                    <button onClick={stop}><Volume/></button>
+                    <span onClick={stop}><Volume/></span>
                 ) : (
-                    <button onClick={() => speak(article.title && article.extract)}><Volume2/></button>
+                    <span onClick={() => speak(article.title && article.extract)}><Volume2/></span>
                 )}
                 </span>
                 </>

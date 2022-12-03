@@ -159,7 +159,7 @@ body[data-theme=dark] {
   --grad: linear-gradient(180deg, #FFE8E8 0%, #FFAEAE 100%);
   --font-size: 14px;
   --color: #f5f8ff;
-  --bg: rgb(12, 12, 12);
+  --bg: rgb(11, 10, 15);
   --index: rgba(149, 149, 149, 0.8);
   --regularweight: 555;
   --mediumweight: 425;
@@ -183,8 +183,8 @@ body[data-theme=dark] {
   --space-16: 1rem;
   --space-40: 1.5rem;
 
-  --shadow-upper: 0 0px 5px rgba(0, 0, 0, 0.15);
-  --shadow-all: 0 0px 10px rgba(0, 0, 0, 1);
+  /* --shadow-upper: 0 0px 5px rgba(255, 255, 255, 0.365); */
+  --shadow-all: 0 0px 10px rgb(175, 94, 94);
 
   --colorCmd: #cbcbcb;
   --bgCmd: #181818;
