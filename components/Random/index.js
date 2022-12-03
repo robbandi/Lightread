@@ -49,10 +49,11 @@ const Random = () => {
     console.log(linkedArticle)
 
     useEffect(() => {
+        const link = `https://api.dictionaryapi.dev/api/v2/entries/en/${selectedWord}`
         if (selectedWord) {
             axios
             .get(
-            `https://api.dictionaryapi.dev/api/v2/entries/en/${selectedWord}`,
+            link,
             )
             .then(response => {
                 setDefinition(response.data[0].meanings[0].definitions[0].definition)
@@ -124,9 +125,10 @@ const Random = () => {
 
     const getRandomArticle = async () => {
         setIsFetching(true)
+        const link = 'http://en.wikipedia.org/api/rest_v1/page/random/summary'
         try {
             const response = await fetch (
-                'http://en.wikipedia.org/api/rest_v1/page/random/summary'
+                link
             )
             const data = await response.json()
             setArticle(data)
@@ -139,9 +141,10 @@ const Random = () => {
 
     const getLinkedArticle = async () => {
         setLinkedDir(true)
+        const link = `https://en.wikipedia.org/api/rest_v1/page/summary/${selectedWord}`
         try {
             const response = await fetch (
-                `https://en.wikipedia.org/api/rest_v1/page/summary/${selectedWord}`
+                link
             )
             const data = await response.json()
             // if (!data.includes('Null may refer to:')) {
