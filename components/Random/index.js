@@ -8,7 +8,7 @@ import { Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
 import { FaBeer, FaWikipediaW } from 'react-icons/fa';
 import { SiWolfram } from 'react-icons/si'
 import Speech from "../Speech";
-import { Html } from "next/document";
+// import { Html } from "next/document";
 // import Swipe from 'swipejs'
 
 
@@ -23,38 +23,38 @@ const Random = () => {
     const [definition, setDefinition] = useState(null)
     const [origin, setOrigin] = useState(null)
 
-    function extractStringsFromHtml(html) {
-        const regex = /"([^"]*)"/g
-        const matches = html.toString().match(regex)
+    // function extractStringsFromHtml(html) {
+    //     const regex = /"([^"]*)"/g
+    //     const matches = html.toString().match(regex)
 
-        return matches
-    }
+    //     return matches
+    // }
 
-    const strings = extractStringsFromHtml(Html)
+    // const strings = extractStringsFromHtml(Html)
 
-    const detectUrl = 'https://translation.googleapis.com/language/translate/v2/detect';
-    axios.post(detectUrl, {
-      q: strings,
-    })
-      .then((response) => {
-        const detectedLanguage = response.data.data.detections[0][0].language;
+    // const detectUrl = 'https://translation.googleapis.com/language/translate/v2/detect';
+    // axios.post(detectUrl, {
+    //   q: strings,
+    // })
+    //   .then((response) => {
+    //     const detectedLanguage = response.data.data.detections[0][0].language;
     
-        const translateUrl = 'https://translation.googleapis.com/language/translate/v2';
-        axios.post(translateUrl, {
-          q: strings,
-          target: detectedLanguage,
-        })
-          .then((response) => {
-            const translatedText = response.data.data.translations[0].translatedText;
-            console.log(translatedText);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    //     const translateUrl = 'https://translation.googleapis.com/language/translate/v2';
+    //     axios.post(translateUrl, {
+    //       q: strings,
+    //       target: detectedLanguage,
+    //     })
+    //       .then((response) => {
+    //         const translatedText = response.data.data.translations[0].translatedText;
+    //         console.log(translatedText);
+    //       })
+    //       .catch((error) => {
+    //         console.error(error);
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
     
     const { user } = useContext(UserContext)
 
