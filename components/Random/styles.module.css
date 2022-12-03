@@ -97,7 +97,7 @@
     backdrop-filter: blur(11.545px);
     /* background-color: rgba(255, 255, 255, 0.381); */
     display: flex;
-    position: fixed;
+    /* position: fixed; */
     margin: 0 auto;
     float: left;
     left: 50%;
