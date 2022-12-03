@@ -71,7 +71,8 @@ const Random = () => {
 
     const handleWordClick = word => {
         if (!word.includes(' ')) {
-            setSelectedWord(word) + getLinkedArticle(word)
+            setSelectedWord(word)
+            getLinkedArticle(word)
             // getLinkedArticle(word)
         } 
     }
