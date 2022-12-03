@@ -270,12 +270,12 @@ const Random = () => {
                 
                 {
                 (
-                linkedArticle && (
+                linkedArticle ? linkedArticle && (
                     <p className={styles.wiki} onClick={getLinkedArticle}><FaWikipediaW/>
                     <p>{linkedArticle.extract.includes("Null") ? '' :  linkedArticle.extract}</p>
                     </p>
                 
-                ))}
+                ): '')} 
 
                 {/* {
                 (article && (
