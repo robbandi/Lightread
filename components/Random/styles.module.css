@@ -94,15 +94,15 @@
     margin: 0 auto;
     justify-content: center; */
     -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(3.545px);
+    backdrop-filter: blur(11.545px);
     /* background-color: rgba(255, 255, 255, 0.381); */
     display: flex;
     position: fixed;
     margin: 0 auto;
-    /* float: left; */
+    float: left;
     left: 50%;
     right: 50%;
-    bottom: 20%;
+    bottom: 10%;
     /* transform: translate(-50%, 50%);  */
     border-radius: 50px;
   }
