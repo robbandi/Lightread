@@ -71,10 +71,9 @@ const Random = () => {
 
     const handleWordClick = word => {
         if (!word.includes(' ')) {
-            setSelectedWord(word)
-            getLinkedArticle(word)
-        } else 
-        setLinkedArticle(null)
+            setSelectedWord(word) + getLinkedArticle(word)
+            // getLinkedArticle(word)
+        } 
     }
 
     const handleWordSelect = event => {
@@ -84,6 +83,7 @@ const Random = () => {
     const handleClickOutside = event => {
         if (selectedWord && !event.target.matches('.highlight')) {
             setSelectedWord(null)
+            setLinkedArticle(null)
         }
     }
 
