@@ -108,7 +108,7 @@
     50% {
         background-position: 100% 50%;
         filter: saturate(0.575);
-        filter: sepia(180);
+        filter: sepia(230);
         /* opacity: 0.5; */
     }
   }
