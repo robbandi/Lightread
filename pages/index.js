@@ -39,11 +39,12 @@ export default function Home() {
         <link rel="apple-touch-icon" sizes="128x128" href="favicon.png" />
         <link rel="icon" sizes="192x192" href="favicon.png" />
       </Head>
-
+      <body onclick>
       <main className={styles.main}>
         <Theme/>
        <Random/>
       </main>
+      </body>
 
       {/* <footer className={styles.footer}>
         <a
