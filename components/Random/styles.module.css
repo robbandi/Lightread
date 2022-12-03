@@ -99,9 +99,11 @@
     display: flex;
     position: fixed;
     margin: 0 auto;
-    float: left;
+    /* float: left; */
     left: 50%;
-    transform: translate(-50%, 50%); 
+    right: 50%;
+    bottom: 20%;
+    /* transform: translate(-50%, 50%);  */
     border-radius: 50px;
   }
 
