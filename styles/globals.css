@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 
 body[data-theme=light] {
-  --grad: linear-gradient( rgba(108, 98, 255, 0.123), rgba(255, 153, 98, 0.555), rgba(152, 56, 255, 0.346));
+  --grad: linear-gradient( rgba(226, 226, 226, 0.897), rgb(172, 172, 172), rgba(157, 157, 157, 0.761));
   --font-size: 14px;
   --color: #11263B;
   --index: rgba(218, 218, 218, 0.8);
@@ -155,10 +155,10 @@ body[data-theme=light] {
 
 body[data-theme=dark] {
   /* --grad: linear-gradient( rgba(202, 197, 255, 0.704), rgb(163, 218, 255), rgba(231, 208, 255, 0.345)); */
-  --grad: linear-gradient( rgba(255, 197, 236, 0.617), rgba(191, 148, 255, 0.756), rgba(255, 208, 243, 0.299));
+  --grad: linear-gradient( rgba(255, 197, 236, 0.941), rgba(191, 148, 255, 0.89), rgba(255, 208, 243, 0.299));
   --font-size: 14px;
   --color: #f5f8ff;
-  --bg: rgb(21, 21, 21);
+  --bg: rgb(12, 12, 12);
   --index: rgba(149, 149, 149, 0.8);
   --regularweight: 555;
   --mediumweight: 425;

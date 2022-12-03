@@ -11,6 +11,15 @@
   }
 }
 
+.lightread {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  /* margin-top: 2rem; */
+  /* background-color: aqua; */
+  display: block;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;

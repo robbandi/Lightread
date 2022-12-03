@@ -6,25 +6,63 @@ import styles from '../Random/styles.module.css'
 import Kinetic from "../Sumi";
 import { Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
 import { FaBeer, FaWikipediaW } from 'react-icons/fa';
+import { SiWolfram } from 'react-icons/si'
 import Speech from "../Speech";
+import { Html } from "next/document";
+// import Swipe from 'swipejs'
 
 
 const Random = () => {
     const [article, setArticle] = useState(null)
     const [linkedArticle, setLinkedArticle] = useState(null)
+    const [wolframalpha, setWolframAlpha] = useState(null)
     const [isFetching, setIsFetching] = useState(false)
     const [linkedDir, setLinkedDir] = useState(false)
     const [isSpeaking, setIsSpeaking] = useState(false)
     const [selectedWord, setSelectedWord] = useState(null)
     const [definition, setDefinition] = useState(null)
+    const [origin, setOrigin] = useState(null)
 
-    // const styles = {
-    //     selectedWord: {
-    //         textDecoration: 'underline'
-    //     }
-    // }
+    function extractStringsFromHtml(html) {
+        const regex = /"([^"]*)"/g
+        const matches = html.toString().match(regex)
 
+        return matches
+    }
+
+    const strings = extractStringsFromHtml(Html)
+
+    const detectUrl = 'https://translation.googleapis.com/language/translate/v2/detect';
+    axios.post(detectUrl, {
+      q: strings,
+    })
+      .then((response) => {
+        const detectedLanguage = response.data.data.detections[0][0].language;
+    
+        const translateUrl = 'https://translation.googleapis.com/language/translate/v2';
+        axios.post(translateUrl, {
+          q: strings,
+          target: detectedLanguage,
+        })
+          .then((response) => {
+            const translatedText = response.data.data.translations[0].translatedText;
+            console.log(translatedText);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    
     const { user } = useContext(UserContext)
+
+    // useEffect(() => {
+    //     const swipeElement = document.querySelector('#gesture')
+    //     const swipe = new Swipe(swipeElement)
+    //     console.log(swipe)
+    // }, [])
 
     useEffect(() => {
         setSelectedWord(null)
@@ -38,6 +76,7 @@ const Random = () => {
         if (isFetching) {
             setSelectedWord(null)
             setDefinition(null)
+            setOrigin(null)
             setIsSpeaking(null)
             setLinkedArticle(null)
         window.speechSynthesis.cancel()
@@ -57,6 +96,10 @@ const Random = () => {
             )
             .then(response => {
                 setDefinition(response.data[0].meanings[0].definitions[0].definition)
+                setOrigin(response.data[0].phonetic)
+                console.log(origin)
+                // setLinkedArticle()
+                // setWolframAlpha()
                 // console.log(definition)
                 // console.log(true + linkedArticle)
             })
@@ -65,7 +108,8 @@ const Random = () => {
             })
         } else {
             setDefinition(null)
-            setLinkedArticle(null)
+            setOrigin(null)
+            // setLinkedArticle(null)
         }
     }, [selectedWord])
 
@@ -85,6 +129,7 @@ const Random = () => {
         if (selectedWord && !event.target.matches('.highlight')) {
             setSelectedWord(null)
             setLinkedArticle(null)
+            setWolframAlpha(null)
         }
     }
 
@@ -148,10 +193,25 @@ const Random = () => {
                 link
             )
             const data = await response.json()
-            // if (!data.includes('Null may refer to:')) {
             setLinkedArticle(data)
-            // }
-            console.log(linkedArticle)
+            // console.log(linkedArticle)
+        } catch (error) {
+            
+        } finally {
+            setLinkedDir(false)
+        }
+    }
+
+    const getWolfram = async () => {
+        setLinkedDir(true)
+        const link = `https://www.wolframalpha.com/input?i=${selectedWord}`
+        try {
+            const response = await fetch (
+                link
+            )
+            const data = await response.json()
+            setWolframAlpha(data)
+            // console.log(linkedArticle)
         } catch (error) {
             
         } finally {
@@ -182,11 +242,6 @@ const Random = () => {
     return (
         <>
         <div onClick={handleClickOutside}>
-        {/* {linkedArticle && (
-                 <p className={styles.wiki} onClick={getLinkedArticle}><FaWikipediaW/>
-                 <p>{linkedArticle.extract}</p>
-                 </p>
-                 )} */}
         {isFetching ? (
             <p>Loading...</p>
         ) : (
@@ -194,6 +249,7 @@ const Random = () => {
                 <>
                 <h1 className={styles.title}>{article.title}</h1>
                 <p>{article.description}</p>
+                
                 {article.extract.split(/\b/).map((word, index) => (
                     <span key={index} 
                     onClick={() => handleWordClick(word)}
@@ -203,27 +259,39 @@ const Random = () => {
                     >
                     {word}
                     </span>                    
-                ))} 
-                <p className={styles.define}>{definition}</p>
+                ))
+                } 
+                <p className={styles.define}>
+                <span>{origin}</span>
+                <span>{definition}</span>
+                </p>
                 <a href={article.content_urls.desktop.page}></a>
-            
-                {/* <a href={linkedArticle.content_urls.desktop.page}></a> */}
-
-                {/* {linkedArticle && (
-                    <>
-                    <p>{linkedArticle}</p>
-                    </>
-                )
-                } */}
-
-                {/* <p>{linkedArticle.extract}</p> */}
-
+                
                 {
+                (
+                linkedArticle && (
+                    <p className={styles.wiki} onClick={getLinkedArticle}><FaWikipediaW/>
+                    <p>{linkedArticle.extract.includes("Null") ? '' :  linkedArticle.extract}</p>
+                    </p>
+                
+                ))}
+
+                {/* {
+                (article && (
+                    <p className={styles.wolf} onClick={getWolfram}><SiWolfram/>
+                    <p>{article.origin.includes("Null") ? '' :  article.origin}</p>
+                    </p>
+                ))} */}
+                
+            
+                {/* {
                 (linkedArticle && (
                     <p className={styles.wiki} onClick={getLinkedArticle}><FaWikipediaW/>
                     <p>{linkedArticle.extract.includes("Null") ? '' :  linkedArticle.extract}</p>
                     </p>
-                ))}
+                ))} */}
+
+                {/* <p>{linkedArticle.extract}</p> */}
 
                 {user && (
                     <button onClick={saveArticle}/>
@@ -239,7 +307,7 @@ const Random = () => {
             )
         )}
         <div></div>
-        <span className={styles.button} onClick={getRandomArticle}>
+        <span id="gesture" className={styles.button} onClick={getRandomArticle}>
             {/* <Kinetic/> */}
             </span>
             </div>
