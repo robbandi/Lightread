@@ -31,6 +31,7 @@ body {
   /* background-color: rgb(237, 237, 237); */
   cursor: pointer;
   text-decoration: 2px solid var(--link) underline;
+  -webkit-text-decoration: 2px solid var(--link) underline;
   /* opacity: 0.2; */
 }
 
