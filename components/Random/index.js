@@ -253,6 +253,7 @@ const Random = () => {
                 {article.extract.split(/\b/).map((word, index) => (
                     <span key={index} 
                     onClick={() => handleWordClick(word)}
+                    ontouchstart={() => handleWordClick(word)}
                     className={
                         word === selectedWord ? 'highlight' : 'outofsight'
                     }
