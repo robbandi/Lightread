@@ -1,0 +1,125 @@
+.highlight {
+    /* background-color: rgb(237, 237, 237); */
+    text-decoration: 2px solid var(--link) underline;
+  }
+
+.blur {
+    /* filter: blur(2.5px); */
+    /* opacity: 0.2; */
+}
+
+.start button {
+    /* background: var(--grad); */
+    /* box-shadow: var(--shadow-upper); */
+    background: none;
+    border: none;
+    color: var(--color);
+    cursor: pointer;
+    /* position: absolute; */
+    bottom: 0;
+    /* margin-top: 3.5rem; */
+    /* background: #222; */
+    /* width: 2rem;
+    height: 2rem; */
+    text-align: center;
+    margin: 0;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    /* margin-top: 10rem; */
+    /* position: fixed; */
+    /* margin: 0 auto; */
+    /* justify-content: center; */
+    /* float: right; */
+    /* float: right; */
+    /* left: 50%; */
+    /* transform: translate(0%, 0%);  */
+    /* position: absolute; */
+    /* border-radius: 2rem; */
+    /* float: left; */
+}
+
+.stop {
+    background: var(--grad);
+    box-shadow: var(--shadow-upper);
+    /* background: none; */
+    border: none;
+    /* background: #222; */
+    /* width: 4rem;
+    height: 4rem; */
+    text-align: center;
+    /* margin: 0; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 10rem; */
+    /* position: fixed; */
+    margin: 0 auto;
+    justify-content: center;
+    float: left;
+    /* float: right; */
+    /* left: 50%; */
+    /* transform: translate(0%, 0%);  */
+    /* position: absolute; */
+    border-radius: 50px;
+    /* float: left; */
+}
+
+  .title {
+    line-height: calc(1em + 0.725rem);
+}
+  
+  .format {
+    /* word-break: break-all; */
+  }
+
+  .button:hover {
+    cursor: pointer;
+    animation: gradient-animation 5s ease-in-out infinite;
+  }
+
+  .button {
+    background-image: var(--grad);
+    box-shadow: var(--shadow-upper);
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    /* position: absolute; */
+    /* bottom: 0; */
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+    justify-content: center;
+    border-radius: 50px;
+  }
+
+  @keyframes gradient-animation {
+    50% {
+        background-position: 100% 50%;
+        filter: saturate(0.575);
+        filter: sepia(230);
+        /* opacity: 0.5; */
+    }
+  }
+
+  .wiki {
+    border-left: 2px solid var(--index);
+    /* word-break: break-all; */
+    padding-left: 1rem;
+    font-style: italic;
+  }
+
+  .define {
+    border-left: 2px solid var(--link);
+    /* word-break: break-all; */
+    padding-left: 1rem;
+    font-style: italic;
+  }
+
+  /* .define span:nth-child(1) {
+    margin-right: 2rem;
+    font-size: 1rem;
+  } */
