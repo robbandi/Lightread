@@ -1,8 +1,8 @@
-const axios = require('axious')
+import { get } from 'axios'
 
-exports.dictionaryapi = async (req, res) => {
+export async function dictionaryapi(req, res) {
     const {q} = req.query
-    const results = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${q}`)
+    const results = await get(`https://api.dictionaryapi.dev/api/v2/entries/en/${q}`)
 
     res.json(results.data)
 }

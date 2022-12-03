@@ -1,6 +1,6 @@
-const Wikipedia = require('wikijs').default
+import Wikipedia from 'wikijs'
 
-exports.wikipediaRandom = async (req, res) => {
+export async function wikipediaRandom(req, res) {
 
     const page = await Wikipedia.random()
 
