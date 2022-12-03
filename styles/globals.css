@@ -46,6 +46,12 @@ section {
   transition: all 1s;
 }
 
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
 @media(prefers-reduced-motion) {
   .hidden {
     transition: none;
