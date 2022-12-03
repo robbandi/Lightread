@@ -125,7 +125,7 @@ const Random = () => {
 
     const getRandomArticle = async () => {
         setIsFetching(true)
-        const link = 'http://en.wikipedia.org/api/rest_v1/page/random/summary'
+        const link = 'https://en.wikipedia.org/api/rest_v1/page/random/summary'
         try {
             const response = await fetch (
                 link
