@@ -11,7 +11,7 @@ body {
   height: 100%;
   background: var(--bg);
   color: var(--color);
-  touch-action: none;
+  /* touch-action: none; */
   /* font-weight: 500; */
   /* line-height: 1.5rem; */
   /* font-family: 'Noto Serif'; */
