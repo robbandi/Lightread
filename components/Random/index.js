@@ -8,6 +8,7 @@ import { Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
 import { FaBeer, FaWikipediaW } from 'react-icons/fa';
 import { SiWolfram } from 'react-icons/si'
 import Speech from "../Speech";
+import { get } from '../../api';
 
 const Random = () => {
     const [article, setArticle] = useState(null)
@@ -18,7 +19,33 @@ const Random = () => {
     const [isSpeaking, setIsSpeaking] = useState(false)
     const [selectedWord, setSelectedWord] = useState(null)
     const [definition, setDefinition] = useState(null)
-    const [origin, setOrigin] = useState(null)
+    const [definition2, setDefinition2] = useState(null)
+    const [definition3, setDefinition3] = useState(null)
+    const [origin, setOrigin] = useState(null);
+    const [currentDiv, setCurrentDiv] = useState(1)
+
+    const [isPaused, setIsPaused] = useState(true)
+
+const handleMouseDynamic = () => {
+  if (isPaused) {
+    setIsPaused(false)
+  }
+}
+
+const handleMouseEnter = () => {
+  setIsPaused(true)
+}
+
+const handleMouseLeave = () => {
+  setIsPaused(false)
+}
+
+
+    // const apiKey = process.env.API_KEY;
+
+    process.env.API_KEY = 'b65f6803-0a14-4ae5-85d3-30a63ec37e61';
+    // process.env.API_ID = '03ba8d30';
+    // process.env.API_KEY_ORIGIN = '136c1f3b9e6edb57653f46c8d52cd189';
 
     // function extractStringsFromHtml(html) {
     //     const regex = /"([^"]*)"/g
@@ -62,17 +89,31 @@ const Random = () => {
     // }, [])
 
     // useEffect(() => {
-    //     setSelectedWord(null)
-    //     document.querySelectorAll('.selected-word', 'unselected-word')
-    //     .forEach((element) => {
-    //         element.classList.remove('.selected-word', 'unselected-word')
-    //     })
-    // }, [])
+    //     // Make an HTTPS request to the API server
+    //     get('https://api.dictionaryapi.dev/api/v2/entries/en/tracing')
+    //       .then((response) => {
+    //         // Update the component state with the response data
+    //         setSelectedWord(response.data);
+    //       })
+    //       .catch((error) => {
+    //         // Handle any errors here
+    //       });
+    //   }, []);
+
+    useEffect(() => {
+        setSelectedWord(null)
+        document.querySelectorAll('.selected-word', 'unselected-word')
+        .forEach((element) => {
+            element.classList.remove('.selected-word', 'unselected-word')
+        })
+    }, [])
 
     useEffect(() => {
         if (isFetching) {
             setSelectedWord(null)
             setDefinition(null)
+            setDefinition2(null)
+            setDefinition3(null)            
             setOrigin(null)
             setIsSpeaking(null)
             setLinkedArticle(null)
@@ -81,30 +122,106 @@ const Random = () => {
         }
     }, [isFetching])
 
-    console.log(selectedWord)
-    console.log(linkedArticle)
+    // if (definition[0] === '-' && definition[0] === '-') {
+    //     const newStr = definition.substring(2)
+    //     new capitalStr = newStr[0].toUpperCase()
+    //     + newStr.substring(1)
+    // } else {
+    //     definition
+    // }
+
+    // console.log(selectedWord)
+    // console.log(linkedArticle)
+
+    // useEffect(() => {
+    //     const sourceLang = 'en';
+    //     // const wordId = 'hello';
+    //     if (selectedWord) {
+    //     axios.get(`https://od-api.oxforddictionaries.com/api/v2/entries/${sourceLang}/${selectedWord}/pronunciations`, {
+    //       headers: {
+    //         'app_id': '03ba8d30',
+    //         'app_key': 'e76fc04e7ee4e065bddfabd92fb3d344',
+    //       },
+    //     })
+    //       .then((response) => {
+    //         setOrigin(response.data[0].results[0].lexicalEntries[0].pronunciations[0].phoneticSpelling);
+    //         console.log(origin); // /hɛˈloʊ/
+    //       })
+    //       .catch((error) => {
+    //         // Handle error here
+    //       });
+    //     } else {
+    //         setOrigin(null)
+    //         // setLinkedArticle(null)
+    //     }
+    //   }, [selectedWord]);
+
+    const handleDivChange = () => {
+        if (currentDiv === 1) {
+          setCurrentDiv(2)
+        } else if (currentDiv === 2) {
+          setCurrentDiv(3)
+        } else if (currentDiv === 3) {
+          setCurrentDiv(1)
+        }
+      }
 
     useEffect(() => {
-        const link = `https://api.dictionaryapi.dev/api/v2/entries/en/${selectedWord}`
+        const link = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${selectedWord}?key=${process.env.API_KEY}`
+        // const link = `https://api.dictionaryapi.dev/api/v2/entries/en/${selectedWord}/pronunciations`
         if (selectedWord) {
             axios
             .get(
             link,
             )
             .then(response => {
-                setDefinition(response.data[0].meanings[0].definitions[0].definition)
-                setOrigin(response.data[0].phonetic)
-                console.log(origin)
-                // setLinkedArticle()
-                // setWolframAlpha()
+                let x = response.data[0].shortdef[0].charAt(0).toUpperCase() + response.data[0].shortdef[0].slice(1) + '.'
+                // let x = response.data[0].shortdef[0]
+                if (x[0] === '—') {
+                    x = x.substring(1)
+                    x = x[0].toUpperCase() + x.substring(1)
+                    x = x + '.'
+                  }
+
+                setDefinition(x)
+                let y = response.data[0].shortdef[1].charAt(0).toUpperCase() + response.data[0].shortdef[1].slice(1) + '.'
+
+                if (y[0] === '—') {
+                    y = y.substring(1)
+                    y = y[0].toUpperCase() + y.substring(1)
+                    y = y + '.'
+                  }
+
+                setDefinition2(y)
+                let z = response.data[0].shortdef[2].charAt(0).toUpperCase() + response.data[0].shortdef[2].slice(1) + '.'
+
+                if (z[0] === '—') {
+                    z = z.substring(1)
+                    z = z[0].toUpperCase() + z.substring(1)
+                    z = z + '.'
+                  }
+
+                setDefinition3(z)
+                console.log(x)
+                console.log(y)
+                console.log(z)
+                // setDefinition(response.data[0].lexicalEntries[0].pronunciations[0].phoneticSpelling)
+                // console.log(response.data[0].shortdef[0])
+                // definition.toString()
                 // console.log(definition)
-                // console.log(true + linkedArticle)
+                // console.log(definition.charAt(0).toUpperCase())
+                // setDefinition(response.data[0].meanings[0].definitions[0].definition)
+                // setOrigin(response.data[0].phonetic)
+                setOrigin(response.data[0].hwi.prs[0].mw)
+                console.log(origin)
             })
             .catch(error => {
                 console.log(error)
             })
         } else {
             setDefinition(null)
+            setDefinition2(null)
+            setDefinition3(null)
             setOrigin(null)
             // setLinkedArticle(null)
         }
@@ -113,7 +230,9 @@ const Random = () => {
     const handleWordClick = word => {
         if (!word.includes(' ')) {
             setSelectedWord(word)
+            // handleDivChange(word)
             getLinkedArticle(word)
+            // setDefinition(word)
             // getLinkedArticle(word)
         } 
     }
@@ -260,10 +379,21 @@ const Random = () => {
                     </span>                    
                 ))
                 } 
-                <p className={styles.define}>
+                {/* <p> */}
+                {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}> */}
+                <p onMouseEnter={handleDivChange} className={styles.define}>
+                <span>{origin}</span>
+                {currentDiv === 1 && <span>{definition}</span>}
+                {currentDiv === 2 && <span>{definition2}</span>}
+                {currentDiv === 3 && <span>{definition3}</span>}
+                </p>
+                {/* </button> */}
+
+                {/* </p> */}
+                {/* <p className={styles.define}>
                 <span>{origin}</span>
                 <span>{definition}</span>
-                </p>
+                </p> */}
                 <a href={article.content_urls.desktop.page}></a>
                 
                 {
@@ -305,10 +435,12 @@ const Random = () => {
                 </>
             )
         )}
-        <div></div>
-        <span className={styles.button} onClick={getRandomArticle}>
+        <div>
+        <span className={styles.button}
+        onClick={getRandomArticle}>
             {/* <Kinetic/> */}
             </span>
+            </div>
             </div>
         </>
     )
