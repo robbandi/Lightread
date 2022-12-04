@@ -9,6 +9,7 @@ import { FaBeer, FaWikipediaW } from 'react-icons/fa';
 import { SiWolfram } from 'react-icons/si'
 import Speech from "../Speech";
 import { get } from '../../api';
+// import { useMediaQuery } from "@mui/material/useMediaQuery";
 
 const Random = () => {
     const [article, setArticle] = useState(null)
@@ -23,7 +24,7 @@ const Random = () => {
     const [definition3, setDefinition3] = useState(null)
     const [origin, setOrigin] = useState(null);
     const [currentDiv, setCurrentDiv] = useState(1)
-
+    // const matches = useMediaQuery('(min-width:768px)');
     const [isPaused, setIsPaused] = useState(true)
 
 const handleMouseDynamic = () => {
@@ -381,7 +382,7 @@ const handleMouseLeave = () => {
                 } 
                 {/* <p> */}
                 {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}> */}
-                <p onMouseEnter={handleDivChange} className={styles.define}>
+                <p onMouseLeave={handleDivChange} className={styles.define}>
                 <span>{origin}</span>
                 {currentDiv === 1 && <span>{definition}</span>}
                 {currentDiv === 2 && <span>{definition2}</span>}
