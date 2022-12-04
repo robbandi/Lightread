@@ -36,6 +36,10 @@ body {
   /* opacity: 0.2; */
 }
 
+::selection {
+  display: none;
+}
+
 .outofsight {
   /* cursor: pointer; */
 

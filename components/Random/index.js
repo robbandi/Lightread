@@ -232,10 +232,10 @@ const handleMouseLeave = () => {
         if (!word.includes(' ')) {
             setSelectedWord(word)
             // handleDivChange(word)
-            getLinkedArticle(word)
+            getLinkedArticle()
             // setDefinition(word)
             // getLinkedArticle(word)
-        } 
+        }
     }
 
     const handleWordSelect = event => {
@@ -245,9 +245,9 @@ const handleMouseLeave = () => {
     const handleClickOutside = event => {
         if (selectedWord && !event.target.matches('.highlight')) {
             setSelectedWord(null)
-            setLinkedArticle(null)
             setWolframAlpha(null)
         }
+        setLinkedArticle(null)
     }
 
     const handleMouseMove = event => {
@@ -371,6 +371,7 @@ const handleMouseLeave = () => {
                 {article.extract.split(/\b/).map((word, index) => (
                     <span key={index} 
                     onClick={() => handleWordClick(word)}
+                    
                     // ontouchstart={() => handleWordClick(word)}
                     className={
                         word === selectedWord ? 'highlight' : 'outofsight'
@@ -382,8 +383,7 @@ const handleMouseLeave = () => {
                 } 
                 {/* <p> */}
                 {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}> */}
-                <p onTouchMove={handleDivChange}
-                onMouseLeave={handleDivChange} className={styles.define}>
+                <p className={styles.define}>
                 <span>{origin}</span>
                 {currentDiv === 1 && <span>{definition}</span>}
                 {currentDiv === 2 && <span>{definition2}</span>}
