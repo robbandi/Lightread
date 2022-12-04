@@ -8,9 +8,6 @@ import { Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
 import { FaBeer, FaWikipediaW } from 'react-icons/fa';
 import { SiWolfram } from 'react-icons/si'
 import Speech from "../Speech";
-// import { Html } from "next/document";
-// import Swipe from 'swipejs'
-
 
 const Random = () => {
     const [article, setArticle] = useState(null)
@@ -64,13 +61,13 @@ const Random = () => {
     //     console.log(swipe)
     // }, [])
 
-    useEffect(() => {
-        setSelectedWord(null)
-        document.querySelectorAll('.selected-word', 'unselected-word')
-        .forEach((element) => {
-            element.classList.remove('.selected-word', 'unselected-word')
-        })
-    }, [])
+    // useEffect(() => {
+    //     setSelectedWord(null)
+    //     document.querySelectorAll('.selected-word', 'unselected-word')
+    //     .forEach((element) => {
+    //         element.classList.remove('.selected-word', 'unselected-word')
+    //     })
+    // }, [])
 
     useEffect(() => {
         if (isFetching) {
@@ -309,7 +306,7 @@ const Random = () => {
             )
         )}
         <div></div>
-        <span id="gesture" className={styles.button} onClick={getRandomArticle}>
+        <span className={styles.button} onClick={getRandomArticle}>
             {/* <Kinetic/> */}
             </span>
             </div>
