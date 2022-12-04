@@ -37,7 +37,7 @@ body {
 }
 
 .outofsight {
-  cursor: pointer;
+  /* cursor: pointer; */
 
   /* filter: blur(2.5px); */
   /* opacity: 0.2; */
