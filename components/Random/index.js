@@ -382,7 +382,8 @@ const handleMouseLeave = () => {
                 } 
                 {/* <p> */}
                 {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}> */}
-                <p onMouseLeave={handleDivChange} className={styles.define}>
+                <p onTouchMove={handleDivChange}
+                onMouseLeave={handleDivChange} className={styles.define}>
                 <span>{origin}</span>
                 {currentDiv === 1 && <span>{definition}</span>}
                 {currentDiv === 2 && <span>{definition2}</span>}
