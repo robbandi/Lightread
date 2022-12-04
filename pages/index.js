@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
 
   // const [theme, setTheme] = useState("dark");
-  const [activeTheme, setActiveTheme] = useState('');
+  const [activeTheme, setActiveTheme] = useState('light');
   const inactiveTheme = activeTheme === 'dark' ? 'light' : 'dark' 
 
   useEffect(() => {
