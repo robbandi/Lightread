@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
+// import Index from '../components/News/';
+import NewsSpecific from '../components/NewsSpecific/';
 import Random from '../components/Random'
 import Theme from '../components/Theme';
 import styles from '../styles/Home.module.css'
@@ -29,6 +31,24 @@ export default function Home() {
     )
   }, [activeTheme])
 
+  const random = () => {
+    return <Random/>
+  }
+
+  const news = () => {
+    return <NewsSpecific/>
+  }
+
+  const [firstVisible, setFirstVisible] = useState(false);
+  const [secondVisible, setSecondVisible] = useState(false);
+
+
+  const handleFirstClick = () => {
+    // When the first component is clicked, hide the second component
+    setFirstVisible(true)
+    setSecondVisible(false);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -39,10 +59,11 @@ export default function Home() {
         <link rel="apple-touch-icon" sizes="128x128" href="favicon.png" />
         <link rel="icon" sizes="192x192" href="favicon.png" />
       </Head>
-      {/* <body onclick> */}
       <main className={styles.main}>
         <Theme/>
-       <Random/>
+        {/* <NewsSpecific onClick={handleFirstClick}/>
+        {!secondVisible && <Random/>} */}
+        <Random/>
       </main>
       {/* </body> */}
 

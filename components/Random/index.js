@@ -13,6 +13,7 @@ import { get } from '../../api';
 
 const Random = () => {
     const [article, setArticle] = useState(null)
+    const [news, setNews] = useState(null)
     const [linkedArticle, setLinkedArticle] = useState(null)
     const [wolframalpha, setWolframAlpha] = useState(null)
     const [isFetching, setIsFetching] = useState(false)
@@ -270,13 +271,8 @@ const handleMouseLeave = () => {
         const span = document.createElement('span')
         span.classList.add('underline')
         const contents = range.extractContents()
-        // span.appendChild(contents)
-        // range.insertNode(span)
-        // setSelectedWord(event.name)
         }
-        // window.speechSynthesis.speak(utterance)
         speechSynthesis.speak(utterance)
-        // console.log(selectedWord)
         setIsSpeaking(true)
     }
 
@@ -295,6 +291,22 @@ const handleMouseLeave = () => {
             )
             const data = await response.json()
             setArticle(data)
+        } catch (error) {
+            
+        } finally {
+            setIsFetching(false)
+        }
+    }
+
+    const getNewsArticle = async () => {
+        setIsFetching(true)
+        const link = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${NEWS_API}`
+        try {
+            const response = await fetch (
+                link
+            )
+            const data = await response.json()
+            setNews(data)
         } catch (error) {
             
         } finally {
@@ -389,13 +401,7 @@ const handleMouseLeave = () => {
                 {currentDiv === 2 && <span>{definition2}</span>}
                 {currentDiv === 3 && <span>{definition3}</span>}
                 </p>
-                {/* </button> */}
 
-                {/* </p> */}
-                {/* <p className={styles.define}>
-                <span>{origin}</span>
-                <span>{definition}</span>
-                </p> */}
                 <a href={article.content_urls.desktop.page}></a>
                 
                 {
@@ -413,16 +419,6 @@ const handleMouseLeave = () => {
                     <p>{article.origin.includes("Null") ? '' :  article.origin}</p>
                     </p>
                 ))} */}
-                
-            
-                {/* {
-                (linkedArticle && (
-                    <p className={styles.wiki} onClick={getLinkedArticle}><FaWikipediaW/>
-                    <p>{linkedArticle.extract.includes("Null") ? '' :  linkedArticle.extract}</p>
-                    </p>
-                ))} */}
-
-                {/* <p>{linkedArticle.extract}</p> */}
 
                 {user && (
                     <button onClick={saveArticle}/>

@@ -133,6 +133,7 @@ body[data-theme=light] {
   --font-size: 14px;
   --color: #11263B;
   --index: rgba(218, 218, 218, 0.8);
+  --url: #11263b16;
   --bg: #eeeeee;
   letter-spacing: -.016em;
   --link: #00a2ff;
