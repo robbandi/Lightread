@@ -23,8 +23,6 @@
 // const [definition3, setDefinition3] = useState(null)
 // const [linkedArticle, setLinkedArticle] = useState(null);
 
-// let NEWS_API = 'c571964c7378404f926792f1023c4996';
-
 // useEffect(() => {
 //     if (isFetching) {
 //         setNews(null)

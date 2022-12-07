@@ -389,7 +389,9 @@ const handleMouseLeave = () => {
                         word === selectedWord ? 'highlight' : 'outofsight'
                     }
                     >
+                    <span className={styles.light}>
                     {word}
+                    </span>
                     </span>                    
                 ))
                 } 
