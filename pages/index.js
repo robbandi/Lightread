@@ -1,12 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Navbar from '../components/Navs/Nav';
+import Title from '../components/Navs/NavTitle';
 // import Index from '../components/News/';
-import NewsSpecific from '../components/NewsSpecific/';
 import Random from '../components/Random'
 import Theme from '../components/Theme';
 import styles from '../styles/Home.module.css'
-
+import circa from '../components/Random/styles.module.css'
+import { Base } from '../components/base';
 export default function Home() {
 
   // const [theme, setTheme] = useState("dark");
@@ -31,23 +33,30 @@ export default function Home() {
     )
   }, [activeTheme])
 
-  const random = () => {
-    return <Random/>
-  }
+  // const random = () => {
+  //   return <Random/>
+  // }
 
-  const news = () => {
-    return <NewsSpecific/>
-  }
+  // const news = () => {
+  //   return <NewsSpecific/>
+  // }
 
-  const [firstVisible, setFirstVisible] = useState(false);
-  const [secondVisible, setSecondVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const docRef = useRef(typeof document !== 'undefined' && document)
 
+  useEffect(() => {
+    const doc = docRef.current
 
-  const handleFirstClick = () => {
-    // When the first component is clicked, hide the second component
-    setFirstVisible(true)
-    setSecondVisible(false);
-  };
+    const onClick = () => {
+      setVisible(false)
+    }
+
+    doc.addEventListener('click', onClick)
+
+    return () => {
+      doc.removeEventListener('click', onClick)
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -60,11 +69,11 @@ export default function Home() {
         <link rel="icon" sizes="192x192" href="favicon.png" />
       </Head>
       <main className={styles.main}>
-        <Theme/>
-        {/* <NewsSpecific onClick={handleFirstClick}/>
-        {!secondVisible && <Random/>} */}
+        <span className={styles.lr}>Lightread</span>
+        {/* {visible && <Base/>} */}
+        {visible && <Base/>}
         <Random/>
-      </main>
+        </main>
       {/* </body> */}
 
       {/* <footer className={styles.footer}>

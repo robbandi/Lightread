@@ -39,6 +39,11 @@
   align-items: center;
 }
 
+.lr {
+  color: var(--title);
+  font-weight: 600;
+}
+
 .footer a {
   display: flex;
   justify-content: center;

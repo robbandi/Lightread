@@ -1,14 +1,17 @@
 import fetch from "isomorphic-fetch";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from '../../contexts/userContext'
 import axios from "axios";
 import styles from '../Random/styles.module.css'
 import Kinetic from "../Sumi";
-import { Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
+import { ArrowRight, Circle, Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
 import { FaBeer, FaWikipediaW } from 'react-icons/fa';
 import { SiWolfram } from 'react-icons/si'
 import Speech from "../Speech";
 import { get } from '../../api';
+import Navbar from "../Navs/Nav";
+import Theme from "../Theme";
+import { Base } from "../base";
 // import { useMediaQuery } from "@mui/material/useMediaQuery";
 
 const Random = () => {
@@ -421,8 +424,15 @@ const handleMouseLeave = () => {
                     <p>{article.origin.includes("Null") ? '' :  article.origin}</p>
                     </p>
                 ))} */}
-
-                {user && (
+                </>
+            )
+        )}
+        <div>
+        <div className={styles.wrapper}>
+     <nav className={styles.nav}>
+        {/* <span className={styles.button} onClick={getRandomArticle}/> */}
+        <span className={styles.navindex}>
+        {user && (
                     <button onClick={saveArticle}/>
                 )}
                                 <span className={styles.start}>
@@ -432,14 +442,19 @@ const handleMouseLeave = () => {
                     <span onClick={() => speak(article.title && article.extract)}><Volume2/></span>
                 )}
                 </span>
-                </>
-            )
-        )}
-        <div>
-        <span className={styles.button}
-        onClick={getRandomArticle}>
-            {/* <Kinetic/> */}
             </span>
+            <span className={styles.navindex}>
+            <span className={styles.line}>I</span>
+            <Theme/>
+            </span>
+            <span className={styles.navindex}>
+            <span className={styles.line}>I</span>
+        <span onClick={getRandomArticle}>
+        <ArrowRight/>
+        </span>
+        </span>
+        </nav>
+        </div>
             </div>
             </div>
         </>

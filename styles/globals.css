@@ -129,6 +129,9 @@ h1, h2, h3, h4, h5, h6, p {
 
 
 body[data-theme=light] {
+  --nav: #e9e9e9;
+  --option: rgba(0, 0, 0, 0.675);
+  --title: #9a9a9a;
   --grad: linear-gradient(180deg, #FFE8E8 0%, #FFAEAE 100%);
   --font-size: 14px;
   --color: #11263B;
@@ -164,18 +167,21 @@ body[data-theme=light] {
 }
 
 body[data-theme=dark] {
+  --nav: #f0edff33;
+  --title: #E5E2FF;
+  --option: #cdc9ff;
   /* --grad: linear-gradient( rgba(202, 197, 255, 0.704), rgb(163, 218, 255), rgba(231, 208, 255, 0.345)); */
   --grad: linear-gradient(180deg, #FFE8E8 0%, #FFAEAE 100%);
   --font-size: 14px;
   --color: #f5f8ff;
-  --bg: rgb(11, 10, 15);
+  --bg: #000211;
   --index: rgba(149, 149, 149, 0.8);
   --regularweight: 555;
   --mediumweight: 425;
   --semiweight: 425;
   letter-spacing: -.016em;
   /* --link: #00b3ff; */
-  --link: #f6f03b;
+  --link: #9DADFF;
 
   --frontend: #ff9595;  
   --badgecolor: #973e3e;

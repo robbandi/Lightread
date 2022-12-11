@@ -1,0 +1,93 @@
+/* //inspired by A. Widua */
+
+@media (min-width: 768px){
+ .wrapper {
+  color: inherit;
+  z-index: 999;
+    display: flex;
+    position: fixed;
+    margin: 0 auto;
+    /* float: right; */
+    /* left: 50%; */
+    /* transform: translate(50%, 10%);  */
+ }
+}
+
+@media (max-width: 768px){
+    .wrapper {
+      color: inherit;
+      z-index: 999;
+       display: flex;
+       position: fixed;
+       margin: 0 auto;
+       /* float: left; */
+       align-items: center;
+       text-align: center;
+       bottom: 10%;
+       left: 47.5%;
+       right: 30%;
+       /* transform: translate(0%, 0%);  */
+      }
+   }
+
+  .nav h1 {
+    font-size: 0.975rem;
+  }
+
+  .navindex:nth-child(1) {
+    cursor: pointer;
+    /* color: aqua; */
+  }
+
+  .navindex:nth-child(1):hover {
+    /* text-decoration: underline; */
+  }
+
+  .nav:hover {
+    /* cursor: pointer; */
+        /* padding: 0.75rem 1.5rem; */
+
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.381);
+    color: rgba(0,0,0,.8);
+  }
+
+  @media (min-width: 768px){
+  .nav  {
+    padding: 0.75rem 1.5rem;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    /* background-color: #f0edff33; */
+    border-radius: 2rem;
+    /* color: var(--index); */
+    color: #f0edff33;
+    /* font-size: 1.125rem; */
+    font-weight: 600;
+}
+  }
+
+  @media (max-width: 768px){
+    .nav  {
+        padding: 0.55rem 1.25rem;
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        background-color: rgba(240, 237, 255, 0.2);
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        color: #E5E2FF;
+        font-weight: 600;
+    }
+      }
+  
+    /* @media screen and (max-width: 960px) {
+      .nav {
+      transition: 0.1s all ease;
+    }
+  }
+
+  @media screen and (min-width: 960px) {
+    .nav {
+    transition: 0.1s all ease;
+  }
+} */
