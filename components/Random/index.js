@@ -299,6 +299,7 @@ const handleMouseLeave = () => {
         ) : (
             article && (
                 <>
+                <div className={styles.artmove}>
                 <h1 className={styles.title}>{article.title}</h1>
                 <p className={styles.desc}>{article.description}</p>
                 
@@ -343,6 +344,7 @@ const handleMouseLeave = () => {
                     <p>{article.origin.includes("Null") ? '' :  article.origin}</p>
                     </p>
                 ))} */}
+                </div>
                 </>
             )
         )}

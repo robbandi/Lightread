@@ -36,7 +36,7 @@ const callArticles = () => {
     doc.addEventListener('click', onClick)
   
     return () => {
-      scroll.scrollToTop();
+      // scroll.scrollToTop();
       doc.removeEventListener('click', onClick)
     }
 }

@@ -222,25 +222,6 @@
     color: rgba(0,0,0,.8); */
   }
 
-  @media (min-width: 768px){
-  .nav  {
-    display: flex;
-    padding: 0.75rem 1.5rem;
-    float: left;
-    /* margin: 0 2.5rem; */
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    background-color: var(--nav); 
-    border-radius: 1.05rem;
-    /* color: var(--index); */
-    /* color: #f0edff33; */
-    color: var(--title);
-    position: fixed;
-    margin-top: 3rem;
-    font-weight: 600;
-}
-  }
-
   .navindex:nth-child(1):hover {
     color: var(--option); 
   }
@@ -272,7 +253,7 @@
     width: 1rem;
   }
   .nav {
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
   }
 
   @media (max-width: 768px){
@@ -288,8 +269,33 @@
         color: var(--title);
         font-weight: 600;
         position: fixed;
-        margin-top: 3rem;
+        /* top: 20; */
+        /* margin-top: 3rem; */
     }
+      }
+
+      @media (min-width: 768px){
+        .nav  {
+          display: flex;
+          padding: 0.75rem 1.5rem;
+          /* float: left; */
+          /* margin: 0 2.5rem; */
+          -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+          background-color: var(--nav); 
+          border-radius: 1.05rem;
+          /* color: var(--index); */
+          /* color: #f0edff33; */
+          color: var(--title);
+          position: fixed;
+          /* top: 30; */
+          /* margin-top: 3rem; */
+          font-weight: 600;
+      }
+        }
+
+      .artmove {
+        /* margin-top: 3rem; */
       }
   
     @media screen and (max-width: 960px) {
