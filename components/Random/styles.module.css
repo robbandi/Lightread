@@ -227,7 +227,7 @@
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     background-color: var(--nav); 
-    border-radius: 2rem;
+    border-radius: 1.05rem;
     /* color: var(--index); */
     /* color: #f0edff33; */
     color: var(--title);
@@ -279,7 +279,7 @@
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
         background-color: var(--nav); 
-        border-radius: 2rem;
+        border-radius: 1.05rem;
         font-size: 0.875rem;
         color: var(--title);
         font-weight: 600;
