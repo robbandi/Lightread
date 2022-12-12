@@ -8,24 +8,29 @@ export const Base = () => {
 const [visible, setVisible] = useState(true);
 const docRef = useRef(typeof document !== 'undefined' && document)
 
-// useEffect(() => {
-//     const doc = docRef.current
-  
-//     const onClick = () => {
-//       setVisible(false)
-//     }
-  
-//     doc.addEventListener('click', onClick)
-  
-//     return () => {
-//       doc.removeEventListener('click', onClick)
-//     }
-//   }, [])
+const [scrollNav, setScrollNav] = useState(false);
+
+const changeNav = () => {
+  if (window.scrollY >= 80) {
+    setScrollNav(true);
+  } else {
+    setScrollNav(false);
+  }
+};
+
+useEffect(() => {
+  window.addEventListener('scroll', changeNav);
+}, []);
+
+const toggleHome = () => {
+  scroll.scrollToTop();
+};
 
 const callArticles = () => {
     const doc = docRef.current
   
     const onClick = () => {
+    toggleHome
       setVisible(false)
     }
   

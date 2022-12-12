@@ -79,6 +79,10 @@
     line-height: calc(1em + 0.725rem);
     font-size: 1.35rem;
 }
+
+.title {
+  margin-top: 4rem;
+}
   
   .format {
     /* word-break: break-all; */
@@ -231,8 +235,8 @@
     /* color: var(--index); */
     /* color: #f0edff33; */
     color: var(--title);
-    /* opacity: 0.5; */
-    /* font-size: 1.125rem; */
+    position: fixed;
+    margin-top: 3rem;
     font-weight: 600;
 }
   }
@@ -273,8 +277,8 @@
 
   @media (max-width: 768px){
     .nav  {
-      /* display: flex; */
-        float: left;
+      display: flex;
+        /* float: left; */
         padding: 0.75rem 1.5rem;
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
@@ -283,6 +287,8 @@
         font-size: 0.875rem;
         color: var(--title);
         font-weight: 600;
+        position: fixed;
+        margin-top: 3rem;
     }
       }
   

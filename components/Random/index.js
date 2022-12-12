@@ -300,7 +300,7 @@ const handleMouseLeave = () => {
             article && (
                 <>
                 <h1 className={styles.title}>{article.title}</h1>
-                <p>{article.description}</p>
+                <p className={styles.desc}>{article.description}</p>
                 
                 {article.extract.split(/\b/).map((word, index) => (
                     <span key={index} 
