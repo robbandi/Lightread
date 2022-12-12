@@ -47,7 +47,7 @@ const callArticles = () => {
         <p className={styles.p}>
         Two main components: <b>a random article generator</b> and <b>a text analysis module</b>.
 The random article generator will use a database of articles to randomly select an article for the user to read. The user will have the option to refresh the page to get a ✨ new random article ✨.
-The text analysis module will use NLP techniques to analyze the text from the article or the user's input. For each word, the module will provide the definition, phonetics, and a link to the Wikipedia page (if available).
+The text analysis module will use NLP techniques to analyze the text from the article or the user&apos;s input. For each word, the module will provide the definition, phonetics, and a link to the Wikipedia page (if available).
         </p>
         {/* </div> */}
         <span onClick={callArticles} className={styles.start}>Get started →</span>

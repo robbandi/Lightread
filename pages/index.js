@@ -61,7 +61,7 @@ export default function Home() {
       {/* </body> */}
 
       <footer className={styles.footer}>
-        <p><span><a href='/'>Lightread</a></span> by <a href="https://www.robinn.io/"
+        <p><span><Link href='/'>Lightread</Link></span> by <a href="https://www.robinn.io/"
         target="_blank"
         rel="noopener noreferrer"
         >Robin Naghshbandi <span className={styles.pass}>🔖</span></a></p>
