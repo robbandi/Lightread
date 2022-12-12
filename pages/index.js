@@ -9,6 +9,7 @@ import Theme from '../components/Theme';
 import styles from '../styles/Home.module.css'
 import circa from '../components/Random/styles.module.css'
 import { Base } from '../components/base';
+import Link from 'next/link';
 export default function Home() {
 
   // const [theme, setTheme] = useState("dark");
@@ -41,23 +42,6 @@ export default function Home() {
   //   return <NewsSpecific/>
   // }
 
-  const [visible, setVisible] = useState(true);
-  const docRef = useRef(typeof document !== 'undefined' && document)
-
-  useEffect(() => {
-    const doc = docRef.current
-
-    const onClick = () => {
-      setVisible(false)
-    }
-
-    doc.addEventListener('click', onClick)
-
-    return () => {
-      doc.removeEventListener('click', onClick)
-    }
-  }, [])
-
   return (
     <div className={styles.container}>
       <Head>
@@ -69,25 +53,24 @@ export default function Home() {
         <link rel="icon" sizes="192x192" href="favicon.png" />
       </Head>
       <main className={styles.main}>
-        <span className={styles.lr}>Lightread</span>
         {/* {visible && <Base/>} */}
-        {visible && <Base/>}
-        <Random/>
+        <Base/>
+        {/* {visible && <Base/>}
+        {!visible && <Random/>} */}
         </main>
       {/* </body> */}
 
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
+      <footer className={styles.footer}>
+        <p><span><a href='/'>Lightread</a></span> by <a href="https://www.robinn.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Robin Naghshbandi <span className={styles.pass}>🔖</span></a></p>
+        <br/>
+        <a className={styles.source} href="https://www.robinn.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >View source on GitHub</a>
+      </footer> 
     </div>
   )
 }

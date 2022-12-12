@@ -3,15 +3,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from '../../contexts/userContext'
 import axios from "axios";
 import styles from '../Random/styles.module.css'
-import Kinetic from "../Sumi";
 import { ArrowRight, Circle, Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
 import { FaBeer, FaWikipediaW } from 'react-icons/fa';
-import { SiWolfram } from 'react-icons/si'
-import Speech from "../Speech";
+// import { SiWolfram } from 'react-icons/si'
 import { get } from '../../api';
-import Navbar from "../Navs/Nav";
 import Theme from "../Theme";
-import { Base } from "../base";
 // import { useMediaQuery } from "@mui/material/useMediaQuery";
 
 const Random = () => {
@@ -44,46 +40,6 @@ const handleMouseEnter = () => {
 const handleMouseLeave = () => {
   setIsPaused(false)
 }
-
-
-    // const apiKey = process.env.API_KEY;
-
-    process.env.API_KEY = 'b65f6803-0a14-4ae5-85d3-30a63ec37e61';
-    // process.env.API_ID = '03ba8d30';
-    // process.env.API_KEY_ORIGIN = '136c1f3b9e6edb57653f46c8d52cd189';
-
-    // function extractStringsFromHtml(html) {
-    //     const regex = /"([^"]*)"/g
-    //     const matches = html.toString().match(regex)
-
-    //     return matches
-    // }
-
-    // const strings = extractStringsFromHtml(Html)
-
-    // const detectUrl = 'https://translation.googleapis.com/language/translate/v2/detect';
-    // axios.post(detectUrl, {
-    //   q: strings,
-    // })
-    //   .then((response) => {
-    //     const detectedLanguage = response.data.data.detections[0][0].language;
-    
-    //     const translateUrl = 'https://translation.googleapis.com/language/translate/v2';
-    //     axios.post(translateUrl, {
-    //       q: strings,
-    //       target: detectedLanguage,
-    //     })
-    //       .then((response) => {
-    //         const translatedText = response.data.data.translations[0].translatedText;
-    //         console.log(translatedText);
-    //       })
-    //       .catch((error) => {
-    //         console.error(error);
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
     
     const { user } = useContext(UserContext)
 
@@ -105,29 +61,7 @@ const handleMouseLeave = () => {
     //       });
     //   }, []);
 
-    useEffect(() => {
-        setSelectedWord(null)
-        document.querySelectorAll('.selected-word', 'unselected-word')
-        .forEach((element) => {
-            element.classList.remove('.selected-word', 'unselected-word')
-        })
-    }, [])
-
-    useEffect(() => {
-        if (isFetching) {
-            setSelectedWord(null)
-            setDefinition(null)
-            setDefinition2(null)
-            setDefinition3(null)            
-            setOrigin(null)
-            setIsSpeaking(null)
-            setLinkedArticle(null)
-        window.speechSynthesis.cancel()
-        speechSynthesis.cancel()
-        }
-    }, [isFetching])
-
-    // if (definition[0] === '-' && definition[0] === '-') {
+        // if (definition[0] === '-' && definition[0] === '-') {
     //     const newStr = definition.substring(2)
     //     new capitalStr = newStr[0].toUpperCase()
     //     + newStr.substring(1)
@@ -160,6 +94,28 @@ const handleMouseLeave = () => {
     //         // setLinkedArticle(null)
     //     }
     //   }, [selectedWord]);
+
+    useEffect(() => {
+        setSelectedWord(null)
+        document.querySelectorAll('.selected-word', 'unselected-word')
+        .forEach((element) => {
+            element.classList.remove('.selected-word', 'unselected-word')
+        })
+    }, [])
+
+    useEffect(() => {
+        if (isFetching) {
+            setSelectedWord(null)
+            setDefinition(null)
+            setDefinition2(null)
+            setDefinition3(null)            
+            setOrigin(null)
+            setIsSpeaking(null)
+            setLinkedArticle(null)
+        window.speechSynthesis.cancel()
+        speechSynthesis.cancel()
+        }
+    }, [isFetching])
 
     const handleDivChange = () => {
         if (currentDiv === 1) {
@@ -210,13 +166,6 @@ const handleMouseLeave = () => {
                 console.log(x)
                 console.log(y)
                 console.log(z)
-                // setDefinition(response.data[0].lexicalEntries[0].pronunciations[0].phoneticSpelling)
-                // console.log(response.data[0].shortdef[0])
-                // definition.toString()
-                // console.log(definition)
-                // console.log(definition.charAt(0).toUpperCase())
-                // setDefinition(response.data[0].meanings[0].definitions[0].definition)
-                // setOrigin(response.data[0].phonetic)
                 setOrigin(response.data[0].hwi.prs[0].mw)
                 console.log(origin)
             })
@@ -228,17 +177,13 @@ const handleMouseLeave = () => {
             setDefinition2(null)
             setDefinition3(null)
             setOrigin(null)
-            // setLinkedArticle(null)
         }
     }, [selectedWord])
 
     const handleWordClick = word => {
         if (!word.includes(' ')) {
             setSelectedWord(word)
-            // handleDivChange(word)
             getLinkedArticle()
-            // setDefinition(word)
-            // getLinkedArticle(word)
         }
     }
 
@@ -430,7 +375,6 @@ const handleMouseLeave = () => {
         <div>
         <div className={styles.wrapper}>
      <nav className={styles.nav}>
-        {/* <span className={styles.button} onClick={getRandomArticle}/> */}
         <span className={styles.navindex}>
         {user && (
                     <button onClick={saveArticle}/>
