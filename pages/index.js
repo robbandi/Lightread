@@ -66,7 +66,7 @@ export default function Home() {
         rel="noopener noreferrer"
         >Robin Naghshbandi <span className={styles.pass}>🔖</span></a></p>
         <br/>
-        <a className={styles.source} href="https://www.robinn.io/"
+        <a className={styles.source} href="https://github.com/robbandi/lightread"
         target="_blank"
         rel="noopener noreferrer"
         >View source on GitHub</a>

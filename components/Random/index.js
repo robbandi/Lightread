@@ -43,58 +43,6 @@ const handleMouseLeave = () => {
     
     const { user } = useContext(UserContext)
 
-    // useEffect(() => {
-    //     const swipeElement = document.querySelector('#gesture')
-    //     const swipe = new Swipe(swipeElement)
-    //     console.log(swipe)
-    // }, [])
-
-    // useEffect(() => {
-    //     // Make an HTTPS request to the API server
-    //     get('https://api.dictionaryapi.dev/api/v2/entries/en/tracing')
-    //       .then((response) => {
-    //         // Update the component state with the response data
-    //         setSelectedWord(response.data);
-    //       })
-    //       .catch((error) => {
-    //         // Handle any errors here
-    //       });
-    //   }, []);
-
-        // if (definition[0] === '-' && definition[0] === '-') {
-    //     const newStr = definition.substring(2)
-    //     new capitalStr = newStr[0].toUpperCase()
-    //     + newStr.substring(1)
-    // } else {
-    //     definition
-    // }
-
-    // console.log(selectedWord)
-    // console.log(linkedArticle)
-
-    // useEffect(() => {
-    //     const sourceLang = 'en';
-    //     // const wordId = 'hello';
-    //     if (selectedWord) {
-    //     axios.get(`https://od-api.oxforddictionaries.com/api/v2/entries/${sourceLang}/${selectedWord}/pronunciations`, {
-    //       headers: {
-    //         'app_id': '03ba8d30',
-    //         'app_key': 'e76fc04e7ee4e065bddfabd92fb3d344',
-    //       },
-    //     })
-    //       .then((response) => {
-    //         setOrigin(response.data[0].results[0].lexicalEntries[0].pronunciations[0].phoneticSpelling);
-    //         console.log(origin); // /hɛˈloʊ/
-    //       })
-    //       .catch((error) => {
-    //         // Handle error here
-    //       });
-    //     } else {
-    //         setOrigin(null)
-    //         // setLinkedArticle(null)
-    //     }
-    //   }, [selectedWord]);
-
     useEffect(() => {
         setSelectedWord(null)
         document.querySelectorAll('.selected-word', 'unselected-word')
@@ -320,6 +268,32 @@ const handleMouseLeave = () => {
     return (
         <>
         <div onClick={handleClickOutside}>
+        <div className={styles.wrapper}>
+     <nav className={styles.nav}>
+        <span className={styles.navindex}>
+        {user && (
+                    <button onClick={saveArticle}/>
+                )}
+                                <span className={styles.start}>
+                {isSpeaking ? (
+                    <span onClick={stop}><Volume/></span>
+                ) : (
+                    <span onClick={() => speak(article.title && article.extract)}><Volume2/></span>
+                )}
+                </span>
+            </span>
+            <span className={styles.navindex}>
+            <span className={styles.line}>I</span>
+            <Theme/>
+            </span>
+            <span className={styles.navindex}>
+            <span className={styles.line}>I</span>
+        <span onClick={getRandomArticle}>
+        <ArrowRight/>
+        </span>
+        </span>
+        </nav>
+        </div>
         {isFetching ? (
             <p>Loading...</p>
         ) : (
@@ -344,7 +318,7 @@ const handleMouseLeave = () => {
                 ))
                 } 
                 {/* <p> */}
-                {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}> */}
+                {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}/> */}
                 <p className={styles.define}>
                 <span>{origin}</span>
                 {currentDiv === 1 && <span>{definition}</span>}
@@ -373,32 +347,6 @@ const handleMouseLeave = () => {
             )
         )}
         <div>
-        <div className={styles.wrapper}>
-     <nav className={styles.nav}>
-        <span className={styles.navindex}>
-        {user && (
-                    <button onClick={saveArticle}/>
-                )}
-                                <span className={styles.start}>
-                {isSpeaking ? (
-                    <span onClick={stop}><Volume/></span>
-                ) : (
-                    <span onClick={() => speak(article.title && article.extract)}><Volume2/></span>
-                )}
-                </span>
-            </span>
-            <span className={styles.navindex}>
-            <span className={styles.line}>I</span>
-            <Theme/>
-            </span>
-            <span className={styles.navindex}>
-            <span className={styles.line}>I</span>
-        <span onClick={getRandomArticle}>
-        <ArrowRight/>
-        </span>
-        </span>
-        </nav>
-        </div>
             </div>
             </div>
         </>

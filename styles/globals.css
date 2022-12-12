@@ -174,9 +174,9 @@ body[data-theme=light] {
 
 body[data-theme=dark] {
   --divider-nav: 1px solid rgb(181, 109, 109);
-  --nav: #f0edff33;
-  --title: #E5E2FF;
-  --option: #cdc9ff;
+  --nav: #f0edff0c;
+  --title: #969696;
+  --option: #ffffff;
   /* --grad: linear-gradient( rgba(202, 197, 255, 0.704), rgb(163, 218, 255), rgba(231, 208, 255, 0.345)); */
   --grad: linear-gradient(180deg, #FFE8E8 0%, #FFAEAE 100%);
   --font-size: 14px;

@@ -6,4 +6,11 @@ const nextConfig = {
   // allowJs: true,
 }
 
-module.exports = nextConfig
+require('dotenv').config()
+
+module.exports = {
+  ...nextConfig,
+  env: {
+    API_KEY: process.env.API_KEY
+  }
+}
