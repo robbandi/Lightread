@@ -30,7 +30,6 @@ const callArticles = () => {
     const doc = docRef.current
   
     const onClick = () => {
-    toggleHome
       setVisible(false)
     }
   
@@ -55,7 +54,7 @@ The random article generator will use a database of articles to randomly select 
 The text analysis module will use NLP techniques to analyze the text from the article or the user&apos;s input. For each word, the module will provide the definition, phonetics, and a link to the Wikipedia page (if available).
         </p>
         {/* </div> */}
-        <span onClick={callArticles} className={styles.start}>Get started →</span>
+        <span onClick={callArticles && toggleHome} className={styles.start}>Get started →</span>
         </div>
         : ''}
         {!visible && <Random/>} 
