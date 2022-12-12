@@ -104,8 +104,9 @@ font-size: 0.95rem;
 
 .footer {
   /* display: flex; */
-  margin: 0 auto;
-  text-align: center;
+  /* margin: 0 auto; */
+  float: left;
+  /* text-align: center; */
   flex: 1;
   padding: 3rem 0;
   /* border-top: 1px solid #eaeaea; */
