@@ -102,11 +102,17 @@ font-size: 0.95rem;
   /* color: rgb(185, 30, 30); */
 }
 
+/* @media (max-width: 768px) {
+  .footer {
+    float: left;
+  }
+} */
+
 .footer {
   /* display: flex; */
-  /* margin: 0 auto; */
-  float: left;
-  /* text-align: center; */
+  /* float: left; */
+  margin: 0 auto;
+  text-align: center;
   flex: 1;
   padding: 3rem 0;
   /* border-top: 1px solid #eaeaea; */
