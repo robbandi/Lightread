@@ -4,7 +4,7 @@ import { UserContext } from '../../contexts/userContext'
 import axios from "axios";
 import styles from '../Random/styles.module.css'
 import { ArrowRight, Circle, Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
-import { FaBeer, FaWikipediaW } from 'react-icons/fa';
+import { Fa500Px, FaBeer, FaWikipediaW } from 'react-icons/fa';
 // import { SiWolfram } from 'react-icons/si'
 import { get } from '../../api';
 import Theme from "../Theme";
@@ -12,6 +12,7 @@ import Theme from "../Theme";
 
 const Random = () => {
     const [article, setArticle] = useState(null)
+    const [related, setRelatedNode ] = useState(null)
     const [news, setNews] = useState(null)
     const [linkedArticle, setLinkedArticle] = useState(null)
     const [wolframalpha, setWolframAlpha] = useState(null)
@@ -60,6 +61,7 @@ const handleMouseLeave = () => {
             setOrigin(null)
             setIsSpeaking(null)
             setLinkedArticle(null)
+            setRelatedNode(null)
         window.speechSynthesis.cancel()
         speechSynthesis.cancel()
         }
@@ -111,11 +113,11 @@ const handleMouseLeave = () => {
                   }
 
                 setDefinition3(z)
-                console.log(x)
-                console.log(y)
-                console.log(z)
+                // console.log(x)
+                // console.log(y)
+                // console.log(z)
                 setOrigin(response.data[0].hwi.prs[0].mw)
-                console.log(origin)
+                // console.log(origin)
             })
             .catch(error => {
                 console.log(error)
@@ -132,6 +134,7 @@ const handleMouseLeave = () => {
         if (!word.includes(' ')) {
             setSelectedWord(word)
             getLinkedArticle()
+            // nodeRelation()
         }
     }
 
@@ -181,18 +184,49 @@ const handleMouseLeave = () => {
     const getRandomArticle = async () => {
         setIsFetching(true)
         const link = 'https://en.wikipedia.org/api/rest_v1/page/random/summary'
+        console.log(link)
         try {
             const response = await fetch (
                 link
             )
             const data = await response.json()
             setArticle(data)
+            // setRelatedNode(data.pages.slice(1, 4))
         } catch (error) {
             
         } finally {
             setIsFetching(false)
         }
     }
+
+    // const nodeRelation = async () => {
+    //     setLinkedDir(true)
+    //     const link = `https://en.wikipedia.org/api/rest_v1/page/extract/${selectedWord}`
+    //     try {
+    //       const response = await fetch(link)
+    //       const data = await response.json()
+    //       // get the first three keywords from the extracted text
+    //       const keywords = data.extract.split(' ').slice(0, 3)
+    //       // retrieve related articles for each keyword
+    //       const articles = await Promise.all(
+    //         keywords.map(async keyword => {
+    //           const response = await fetch(
+    //             `https://en.wikipedia.org/api/rest_v1/page/related/${keyword}`
+    //           )
+    //           const data = await response.json()
+    //           console.log(data)
+    //           return data.pages[0]
+    //         })
+    //       )
+    //       // store the related articles in the linkedArticles state variable
+    //       setRelatedNode(articles)
+    //       console.log(articles)
+    //     } catch (error) {
+    //       // handle error
+    //     } finally {
+    //       setLinkedDir(false)
+    //     }
+    //   }
 
     const getNewsArticle = async () => {
         setIsFetching(true)
@@ -218,9 +252,7 @@ const handleMouseLeave = () => {
                 link
             )
             const data = await response.json()
-            // data/
             setLinkedArticle(data)
-            // console.log(linkedArticle)
         } catch (error) {
             
         } finally {
@@ -337,6 +369,7 @@ const handleMouseLeave = () => {
                     </p>
                 
                 ): '')} 
+
 
                 {/* {
                 (article && (

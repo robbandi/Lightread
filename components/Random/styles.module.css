@@ -268,9 +268,9 @@
         font-size: 0.875rem;
         color: var(--title);
         font-weight: 600;
-        /* position: fixed; */
+        position: fixed;
         /* top: 20; */
-        /* margin-top: 3rem; */
+        margin-top: 0.5rem;
     }
       }
 
@@ -289,7 +289,7 @@
           color: var(--title);
           position: fixed;
           /* top: 30; */
-          /* margin-top: 3rem; */
+          margin-top: 0.5rem;
           font-weight: 600;
       }
         }

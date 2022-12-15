@@ -47,6 +47,7 @@
 }
 
 .start:hover {
+  cursor: pointer;
   text-decoration: underline 1px solid
 }
 
