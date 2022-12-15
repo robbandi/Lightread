@@ -77,6 +77,24 @@ const handleMouseLeave = () => {
         }
       }
 
+      const handleOptOne = () => {
+        if (currentDiv === 1) {
+            setCurrentDiv(1)
+        }
+    }
+
+    const handleOptTwo = () => {
+        if (currentDiv === 2) {
+            setCurrentDiv(2)
+        }
+    }
+
+    const handleOptThree = () => {
+        if (currentDiv === 3) {
+            setCurrentDiv(3)
+        }
+    }
+
     useEffect(() => {
         const link = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${selectedWord}?key=${process.env.API_KEY}`
         // const link = `https://api.dictionaryapi.dev/api/v2/entries/en/${selectedWord}/pronunciations`
@@ -134,6 +152,7 @@ const handleMouseLeave = () => {
         if (!word.includes(' ')) {
             setSelectedWord(word)
             getLinkedArticle()
+            handleDivChange()
             // nodeRelation()
         }
     }
@@ -146,6 +165,9 @@ const handleMouseLeave = () => {
         if (selectedWord && !event.target.matches('.highlight')) {
             setSelectedWord(null)
             setWolframAlpha(null)
+            setDefinition(null)
+            setDefinition2(null)
+            setDefinition3(null)
         }
         setLinkedArticle(null)
     }
@@ -353,7 +375,9 @@ const handleMouseLeave = () => {
                 {/* <p> */}
                 {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}/> */}
                 <p className={styles.define}>
-                <span>{origin}</span>
+                <span className={styles.phonetic}>{origin}
+                </span>
+                {/* <button className={styles.optone} onMouseEnter={handleDivChange}>🔄</button> */}
                 {currentDiv === 1 && <span>{definition}</span>}
                 {currentDiv === 2 && <span>{definition2}</span>}
                 {currentDiv === 3 && <span>{definition3}</span>}

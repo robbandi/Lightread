@@ -161,18 +161,6 @@
     font-style: italic;
   }
 
-  .define span:nth-child(1) {
-    opacity: 0.3;
-    display: flex;
-  }
-
-  .define {
-    border-left: 2px solid var(--link);
-    /* word-break: break-all; */
-    padding-left: 1rem;
-    font-style: italic;
-  }
-
   /* .define span:nth-child(1) {
     margin-right: 2rem;
     font-size: 1rem;
@@ -239,6 +227,37 @@
   .navindex {
     position: relative;
     bottom: -0.25rem;
+  }
+
+  .phonetic {
+    opacity: 0.3;
+    display: flex;
+  }
+
+  .define {
+    border-left: 2px solid var(--link);
+    /* word-break: break-all; */
+    padding-left: 1rem;
+    font-style: italic;
+  }
+
+  .optone {
+    float: right;
+    transition: 0.1s all ease;
+    background-color: var(--nav);
+    color: var(--title);
+    border: none;
+    margin: 0.25rem;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .optone, .opttwo {
+    float: right;
+    display: block
+  }
+
+  .optone {
   }
 
   .line {
