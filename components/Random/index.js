@@ -299,7 +299,6 @@ const handleMouseLeave = () => {
     
     return (
         <>
-        <div onClick={handleClickOutside}>
         <div className={styles.wrapper}>
      <nav className={styles.nav}>
         <span className={styles.navindex}>
@@ -326,6 +325,7 @@ const handleMouseLeave = () => {
         </span>
         </nav>
         </div>
+        <div onClick={handleClickOutside}>
         {isFetching ? (
             <p>Loading...</p>
         ) : (
