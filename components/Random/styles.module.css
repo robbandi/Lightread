@@ -252,6 +252,18 @@
     padding: 0.25rem 0.5rem;
   }
 
+  .next {
+    /* display: block; */
+    background: var(--nav);
+    border-radius: 1rem;
+    /* width: 50%; */
+    word-break: break-all;
+    /* text-align: center; */
+    /* position: absolute; */
+    padding: 0rem 0rem;
+    /* margin: 0 auto; */
+  }
+
   .optone, .opttwo {
     float: right;
     display: block

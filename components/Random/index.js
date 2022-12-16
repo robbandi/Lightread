@@ -15,6 +15,8 @@ const Random = () => {
     const [related, setRelatedNode ] = useState(null)
     const [news, setNews] = useState(null)
     const [linkedArticle, setLinkedArticle] = useState(null)
+    const [linkedArticleTwo, setLinkedArticleTwo] = useState(null)
+    const [linkedArticleThree, setLinkedArticleThree] = useState(null)
     const [wolframalpha, setWolframAlpha] = useState(null)
     const [isFetching, setIsFetching] = useState(false)
     const [linkedDir, setLinkedDir] = useState(false)
@@ -61,6 +63,8 @@ const handleMouseLeave = () => {
             setOrigin(null)
             setIsSpeaking(null)
             setLinkedArticle(null)
+            setLinkedArticleTwo(null)
+            setLinkedArticleThree(null)
             setRelatedNode(null)
         window.speechSynthesis.cancel()
         speechSynthesis.cancel()
@@ -170,6 +174,8 @@ const handleMouseLeave = () => {
             setDefinition3(null)
         }
         setLinkedArticle(null)
+        setLinkedArticleTwo(null)
+        setLinkedArticleThree(null)
     }
 
     const handleMouseMove = event => {
@@ -213,6 +219,7 @@ const handleMouseLeave = () => {
             )
             const data = await response.json()
             setArticle(data)
+            getNextArticleOne()
             // setRelatedNode(data.pages.slice(1, 4))
         } catch (error) {
             
@@ -220,6 +227,23 @@ const handleMouseLeave = () => {
             setIsFetching(false)
         }
     }
+
+    // const getNextArticleOne = async () => {
+    //     setIsFetching(true)
+    //     const link = 'https://en.wikipedia.org/api/rest_v1/page/random/summary'
+    //     console.log(link)
+    //     try {
+    //         const response = await fetch (
+    //             link
+    //         )
+    //         const data = await response.json()
+    //         setLinkedArticleTwo(data)
+    //     } catch (error) {
+            
+    //     } finally {
+    //         setIsFetching(false)
+    //     }
+    // }
 
     // const nodeRelation = async () => {
     //     setLinkedDir(true)
@@ -393,7 +417,26 @@ const handleMouseLeave = () => {
                     </p>
                 
                 ): '')} 
+                
+                {/* {
+                (
+                linkedArticleTwo ? linkedArticleTwo && (
+                    <div className={styles.next}>
+                    <h1 className={styles.title}>{linkedArticleTwo.title}</h1>
+                    <p className={styles.desc}>{linkedArticleTwo.description}</p>
+                    </div>
+                
+                ): '')} 
 
+                {
+                (
+                linkedArticleThree ? linkedArticleThree && (
+                    <>
+                    <h1 className={styles.title}>{linkedArticleThree.title}</h1>
+                    <p className={styles.desc}>{linkedArticleThree.description}</p>
+                    </>
+                
+                ): '')}  */}
 
                 {/* {
                 (article && (
