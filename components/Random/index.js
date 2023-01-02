@@ -276,7 +276,7 @@ const handleMouseLeave = () => {
 
     const getNewsArticle = async () => {
         setIsFetching(true)
-        const link = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${NEWS_API}`
+        const link = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${process.env.NEWS_API}`
         try {
             const response = await fetch (
                 link
