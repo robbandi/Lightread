@@ -212,7 +212,7 @@ const handleMouseLeave = () => {
     const getRandomArticle = async () => {
         setIsFetching(true)
         const link = 'https://en.wikipedia.org/api/rest_v1/page/random/summary'
-        console.log(link)
+        // console.log(link)
         try {
             const response = await fetch (
                 link
