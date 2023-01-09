@@ -100,7 +100,7 @@ const handleMouseLeave = () => {
     }
 
     useEffect(() => {
-        const link = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${selectedWord}?key=${process.env.API_KEY}`
+        const link = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${selectedWord}?key=${process.env.NEXT_PUBLIC_API_KEY}`
         // const link = `https://api.dictionaryapi.dev/api/v2/entries/en/${selectedWord}/pronunciations`
         if (selectedWord) {
             axios
