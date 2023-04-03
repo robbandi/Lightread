@@ -1,6 +1,7 @@
 import Head from "next/head"
 import Link from "next/link"
 import Random from "../components/Random"
+import WordBreakdown from "../components/WordBreakdown"
 import styles from '../styles/Home.module.css'
 
 const App = () => {
@@ -16,7 +17,8 @@ const App = () => {
           </Head>
           <main className={styles.main}>
             {/* {visible && <Base/>} */}
-            <Random/>
+            {/* <Random/> */}
+            <WordBreakdown/>
             {/* {visible && <Base/>}
             {!visible && <Random/>} */}
             </main>
