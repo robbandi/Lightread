@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from '../../contexts/userContext'
 import axios from "axios";
 import styles from '../Random/styles.module.css'
-import { ArrowRight, Circle, Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
+import { ArrowRight, RefreshCcw, Circle, Moon, Sun, Volume, Volume2, Zap, ZapOff } from "react-feather";
 import { Fa500Px, FaBeer, FaWikipediaW } from 'react-icons/fa';
 // import { SiWolfram } from 'react-icons/si'
 import { get } from '../../api';
@@ -15,6 +15,7 @@ const Random = () => {
     const [related, setRelatedNode ] = useState(null)
     const [news, setNews] = useState(null)
     const [linkedArticle, setLinkedArticle] = useState(null)
+    const [linkedArticleOne, setLinkedArticleOne] = useState(null)
     const [linkedArticleTwo, setLinkedArticleTwo] = useState(null)
     const [linkedArticleThree, setLinkedArticleThree] = useState(null)
     const [wolframalpha, setWolframAlpha] = useState(null)
@@ -82,22 +83,16 @@ const handleMouseLeave = () => {
       }
 
       const handleOptOne = () => {
-        if (currentDiv === 1) {
-            setCurrentDiv(1)
-        }
-    }
-
-    const handleOptTwo = () => {
-        if (currentDiv === 2) {
-            setCurrentDiv(2)
-        }
-    }
-
-    const handleOptThree = () => {
-        if (currentDiv === 3) {
-            setCurrentDiv(3)
-        }
-    }
+        setCurrentDiv(1);
+      };
+      
+      const handleOptTwo = () => {
+        setCurrentDiv(2);
+      };
+      
+      const handleOptThree = () => {
+        setCurrentDiv(3);
+      };
 
     useEffect(() => {
         const link = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${selectedWord}?key=${'b65f6803-0a14-4ae5-85d3-30a63ec37e61'}`
@@ -135,11 +130,7 @@ const handleMouseLeave = () => {
                   }
 
                 setDefinition3(z)
-                // console.log(x)
-                // console.log(y)
-                // console.log(z)
                 setOrigin(response.data[0].hwi.prs[0].mw)
-                // console.log(origin)
             })
             .catch(error => {
                 console.log(error)
@@ -212,14 +203,13 @@ const handleMouseLeave = () => {
     const getRandomArticle = async () => {
         setIsFetching(true)
         const link = 'https://en.wikipedia.org/api/rest_v1/page/random/summary'
-        // console.log(link)
         try {
             const response = await fetch (
                 link
             )
             const data = await response.json()
             setArticle(data)
-            getNextArticleOne()
+            console.log(data)
             // setRelatedNode(data.pages.slice(1, 4))
         } catch (error) {
             
@@ -227,6 +217,24 @@ const handleMouseLeave = () => {
             setIsFetching(false)
         }
     }
+
+    const getNextArticles = async (title, numArticles) => {
+        setIsFetching(true);
+        const link = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=links&titles=${title}&pllimit=${numArticles}&redirects=1&plnamespace=0`;
+        try {
+          const response = await fetch(link);
+          const data = await response.json();
+          const pages = data.query.pages;
+          const page = Object.values(pages)[0];
+          const links = page.links.slice(0, numArticles);
+          const titles = links.map((link) => link.title);
+          setRelatedArticles(titles);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setIsFetching(false);
+        }
+      };
 
     // const getNextArticleOne = async () => {
     //     setIsFetching(true)
@@ -306,6 +314,27 @@ const handleMouseLeave = () => {
         }
     }
 
+    const getNextArticleLink = async () => {
+        if (!article) {
+          return;
+        }
+      
+        setIsFetching(true);
+        try {
+          const link = `https://en.wikipedia.org/api/rest_v1/page/related/${article.pageid}`;
+          const response = await fetch(link);
+          const data = await response.json();
+      
+          setLinkedArticleOne(data.pages[0]);
+          setLinkedArticleTwo(data.pages[1]);
+          setLinkedArticleThree(data.pages[2]);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setIsFetching(false);
+        }
+      };
+
     const getWolfram = async () => {
         setLinkedDir(true)
         const link = `https://www.wolframalpha.com/input?i=${selectedWord}`
@@ -366,7 +395,7 @@ const handleMouseLeave = () => {
             <span className={styles.navindex}>
             <span className={styles.line}>I</span>
         <span onClick={getRandomArticle}>
-        <ArrowRight/>
+        <RefreshCcw width={20}/>
         </span>
         </span>
         </nav>
@@ -399,13 +428,30 @@ const handleMouseLeave = () => {
                 {/* <p> */}
                 {/* <span className={styles.changeDiv} onMouseEnter={handleDivChange}/> */}
                 <p className={styles.define}>
-                <span className={styles.phonetic}>{origin}
-                </span>
-                {/* <button className={styles.optone} onMouseEnter={handleDivChange}>🔄</button> */}
-                {currentDiv === 1 && <span>{definition}</span>}
-                {currentDiv === 2 && <span>{definition2}</span>}
-                {currentDiv === 3 && <span>{definition3}</span>}
-                </p>
+  <span className={styles.phonetic}>{origin}</span>
+  {selectedWord ? (
+    <div className={styles.buttonContainer}>
+        {definition2 && (
+      <button className={styles.optone} onMouseEnter={handleOptOne}>
+      1
+    </button>
+      )}
+      {definition3 && (
+      <button className={styles.optone} onMouseEnter={handleOptTwo}>
+      2
+    </button>
+      )}
+        {definition && (
+        <button className={styles.optone} onMouseEnter={handleOptThree}>
+        3
+      </button>
+        )}
+    </div>
+  ) : null}
+  {currentDiv === 1 && <span>{definition}</span>}
+  {currentDiv === 2 && <span>{definition2}</span>}
+  {currentDiv === 3 && <span>{definition3}</span>}
+</p>
 
                 <a href={article.content_urls.desktop.page}></a>
                 
@@ -417,33 +463,7 @@ const handleMouseLeave = () => {
                     </p>
                 
                 ): '')} 
-                
-                {/* {
-                (
-                linkedArticleTwo ? linkedArticleTwo && (
-                    <div className={styles.next}>
-                    <h1 className={styles.title}>{linkedArticleTwo.title}</h1>
-                    <p className={styles.desc}>{linkedArticleTwo.description}</p>
-                    </div>
-                
-                ): '')} 
 
-                {
-                (
-                linkedArticleThree ? linkedArticleThree && (
-                    <>
-                    <h1 className={styles.title}>{linkedArticleThree.title}</h1>
-                    <p className={styles.desc}>{linkedArticleThree.description}</p>
-                    </>
-                
-                ): '')}  */}
-
-                {/* {
-                (article && (
-                    <p className={styles.wolf} onClick={getWolfram}><SiWolfram/>
-                    <p>{article.origin.includes("Null") ? '' :  article.origin}</p>
-                    </p>
-                ))} */}
                 </div>
                 </>
             )

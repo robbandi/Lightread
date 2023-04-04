@@ -17,8 +17,8 @@ const App = () => {
           </Head>
           <main className={styles.main}>
             {/* {visible && <Base/>} */}
-            {/* <Random/> */}
-            <WordBreakdown/>
+            <Random/>
+            {/* <WordBreakdown/> */}
             {/* {visible && <Base/>}
             {!visible && <Random/>} */}
             </main>

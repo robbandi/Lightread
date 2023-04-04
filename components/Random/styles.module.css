@@ -241,15 +241,69 @@
     font-style: italic;
   }
 
+  .buttonContainer {
+    /* display: flex; */
+    /* float: right; */
+    /* flex-direction: row; */
+    /* justify-content: space-between; */
+  }
+  
+  @media only screen and (max-width: 568px) {
+    .buttonContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 1rem;
+      /* padding: 0rem 0.25rem; */
+      /* float: right; */
+      /* margin-left: 350px; */
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media only screen and (max-width: 568px) {
+    .optone {
+      /* float: left; */
+      transition: 0.1s all ease;
+      background-color: var(--nav);
+      color: var(--title);
+      /* border: none; */
+      border: 1px solid var(--borderOpt);
+      margin: 0.25rem;
+      border-radius: 0.25rem;
+      padding: 0.25rem;
+    }
+  }
+
+  @media only screen and (min-width: 568px) {
   .optone {
-    float: right;
+    /* float: right; */
     transition: 0.1s all ease;
     background-color: var(--nav);
     color: var(--title);
-    border: none;
-    margin: 0.25rem;
+    /* border: none; */
+    border: 1px solid var(--borderOpt);
+    /* margin: 0.25rem; */
+    /* gap: 20px; */
     border-radius: 0.25rem;
     padding: 0.25rem 0.5rem;
+  }
+}
+
+.optone:nth-child(1) {
+  margin-right: 0.5rem;
+  margin: 0.5rem 0rem;
+}
+
+.optone:nth-child(2) {
+  margin-right: 0.5rem;
+  margin: 0.5rem 0.5rem;
+}
+
+  .optone:hover {
+    /* background-color: var(--option); */
+    /* color: var(--title); */
+    opacity: 0.7;
   }
 
   .next {
@@ -265,11 +319,8 @@
   }
 
   .optone, .opttwo {
-    float: right;
-    display: block
-  }
-
-  .optone {
+    /* float: right; */
+    /* display: block */
   }
 
   .line {
