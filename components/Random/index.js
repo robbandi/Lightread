@@ -441,11 +441,11 @@ const handleMouseLeave = () => {
       2
     </button>
       )}
-        {definition && (
+        {/* {definition && ( */}
         <button className={styles.optone} onMouseEnter={handleOptThree}>
         3
       </button>
-        )}
+        {/* )} */}
     </div>
   ) : null}
   {currentDiv === 1 && <span>{definition}</span>}
